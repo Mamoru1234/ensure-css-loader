@@ -1,3 +1,12 @@
-import styles from './index.css';
+const m = require('./test');
 
-console.log(styles);
+m.test();
+
+if (module.hot) {
+    console.log('Hot enabled #####################');
+    module.hot.accept('./test', () => {
+        console.log('Acceppt');
+        const newModule = require('./test');
+        newModule.test();
+    })
+}
